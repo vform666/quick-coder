@@ -1,0 +1,71 @@
+{
+	"name": "quick-coder",
+	"displayName": "quick-coder",
+	"description": "A powerful code generator for Vue",
+	"version": "0.0.1",
+	"engines": {
+		"vscode": "^1.60.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"author": {
+		"name": "vformAdmin"
+	},
+	"publisher": "vformAdmin",
+	"homepage": "http://www.vform666.com",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/vform666/quick-coder"
+	},
+	"activationEvents": [
+		"onCommand:extension.openVFormMaker"
+	],
+	"main": "./extension.js",
+	"contributes": {
+		"configuration": {
+			"type": "object",
+			"title": "VForm设计器配置",
+			"properties": {
+				"VFormMaker.url": {
+					"type": "string",
+					"default": "http://120.92.142.115/?vscode=1",
+					"description": "VForm设计器远程URL"
+				}
+			}
+		},
+		"commands": [
+			{
+				"command": "extension.openVFormMaker",
+				"title": "打开VForm设计器"
+			}
+		],
+		"menus": {
+			"explorer/context": [
+				{
+					"command": "extension.openVFormMaker",
+					"group": "navigation"
+				}
+			]
+		}
+	},
+	"scripts": {
+		"lint": "eslint .",
+		"pretest": "npm run lint",
+		"test": "node ./test/runTest.js"
+	},
+	"devDependencies": {
+		"@types/vscode": "^1.60.0",
+		"@types/glob": "^7.1.3",
+		"@types/mocha": "^8.2.2",
+		"@types/node": "14.x",
+		"eslint": "^7.27.0",
+		"glob": "^7.1.7",
+		"mocha": "^8.4.0",
+		"typescript": "^4.3.2",
+		"vscode-test": "^1.5.2"
+	},
+	"dependencies": {
+		"open": "^8.2.1"
+	}
+}

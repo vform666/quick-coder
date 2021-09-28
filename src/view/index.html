@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=0,maximum-scale=0,user-scalable=yes,shrink-to-fit=no"
+    />
+    <title>Quick Coder</title>
+    <style>
+      html,
+      body {
+        height: 100%;
+        overflow: hidden;
+        padding: 0;
+        margin: 0;
+        background-color: #2c3e50;
+      }
+
+      #frame {
+        display: none;
+      }
+    </style>
+    <style>
+      .spinner {
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin: -20px 0 0 -20px;
+        text-align: center;
+
+        -webkit-animation: sk-rotate 2s infinite linear;
+        animation: sk-rotate 2s infinite linear;
+      }
+
+      .dot1,
+      .dot2 {
+        width: 60%;
+        height: 60%;
+        display: inline-block;
+        position: absolute;
+        top: 0;
+        /*background-color: #2c3e50;*/
+        background-color: #ffffff;
+        border-radius: 100%;
+
+        -webkit-animation: sk-bounce 2s infinite ease-in-out;
+        animation: sk-bounce 2s infinite ease-in-out;
+      }
+
+      .dot2 {
+        top: auto;
+        bottom: 0;
+        -webkit-animation-delay: -1s;
+        animation-delay: -1s;
+      }
+
+      @-webkit-keyframes sk-rotate {
+        100% {
+          -webkit-transform: rotate(360deg);
+        }
+      }
+      @keyframes sk-rotate {
+        100% {
+          transform: rotate(360deg);
+          -webkit-transform: rotate(360deg);
+        }
+      }
+
+      @-webkit-keyframes sk-bounce {
+        0%,
+        100% {
+          -webkit-transform: scale(0);
+        }
+        50% {
+          -webkit-transform: scale(1);
+        }
+      }
+
+      @keyframes sk-bounce {
+        0%,
+        100% {
+          transform: scale(0);
+          -webkit-transform: scale(0);
+        }
+        50% {
+          transform: scale(1);
+          -webkit-transform: scale(1);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="spinner" id="pre-loader">
+      <div class="dot1"></div>
+      <div class="dot2"></div>
+    </div>
+    <iframe id="frame" width="100%" height="100%" frameborder="0"></iframe>
+    <script>
+      window.onload = function () {
+        const vscode = acquireVsCodeApi();
+        const cmds = {
+          setSrc: function (message) {
+            var frame = document.getElementById("frame");
+            frame.src = message.data.src;
+            frame.onload = function () {
+              document.getElementById("pre-loader").style.display = "none";
+              frame.style.display = "block";
+            };
+          },
+          writeFile: function (message) {
+            vscode.postMessage(message);
+          },
+          openUrl: function (message) {
+            vscode.postMessage(message);
+          },
+          setStorageItem: function (message) {
+            vscode.postMessage(message);
+          },
+        };
+
+        window.addEventListener("message", (event) => {
+          const message = event.data;
+          if (message && message.cmd) cmds[message.cmd](message);
+        });
+      };
+    </script>
+  </body>
+</html>
