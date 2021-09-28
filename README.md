@@ -2,13 +2,14 @@
 
 ##### A sample project template for VS Code plugin.
 
-一个简单的VS Code插件模板工程，支持WebView加载远程网页.
+一个简单的VS Code插件模板工程，支持WebView加载远程网页。
 
 **Enjoy!**
 
 
 ### VForm资源链接
 <hr>
+
 ##### VForm，一款高效的Vue低代码表单，可视化设计，一键生成源码，享受更多摸鱼时间。
 
 文档官网：<a href="http://www.vform666.com/" target="_blank">http://www.vform666.com/</a>
