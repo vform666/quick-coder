@@ -2,9 +2,9 @@
 	"name": "quick-coder",
 	"displayName": "quick-coder",
 	"description": "A powerful code generator for Vue",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"engines": {
-		"vscode": "^1.60.0"
+		"vscode": "^1.0.0"
 	},
 	"categories": [
 		"Other"
